@@ -1,4 +1,5 @@
-from util.util import extended_euclidean_inverse, modular_pow
+from util.util import *
+from model.eg import eg
 
 
 class uegr():
@@ -58,7 +59,15 @@ class uegr():
 
     def get_c4_(self,obj):
         obj['c4_'] = modular_pow(int(obj['y']), int(obj['r2']) * int (obj['t']), int(obj['p']))
-        return obj     
+        return obj
+
+    def get_decryption(self,obj):
+        print(obj['c3'],obj['x'])
+        if modDivide(int(obj['c4']),int(obj['c3']) ** int(obj['x']),int(obj['p'])) == 1:
+            obj['dm'] = modDivide(int(obj['c2']),int(obj['c1']) ** int(obj['x']),int(obj['p']))
+        else:
+            obj['dm'] = -1    
+        return obj         
 
 
 

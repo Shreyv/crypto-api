@@ -26,3 +26,9 @@ class egr():
         obj['c1_'] = modular_pow(int(obj['eg1']['g']), int(obj['eg1']['r'])+int(obj['s']), int(obj['eg1']['p']))
         obj['c2_']= int(obj['eg1']['m']) * modular_pow(int(obj['eg1']['y']), int(obj['eg1']['r'])+int(obj['s'])  , int(obj['eg1']['p']))
         return obj
+
+    def get_decryption(self,obj):
+        dec_obj = eg(x=obj['eg1']['x'], c1=obj['c1_'], c2=obj['c2_'])
+        dec_obj.get_decryption()
+        obj['dm'] = dec_obj.__dict__['dm']
+        return obj    

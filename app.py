@@ -86,6 +86,10 @@ def egr_get_c2():
 def egr_get_ree():
     return json.dumps(egr().get_reencryption(request.json))
 
+@app.route('/egr/dec/', methods=['POST'])
+def egr_get_dec():
+    return json.dumps(egr().get_decryption(request.json))
+
 @app.route('/uegr/public/', methods=['POST'])
 def uegr_get_public_key():
     return json.dumps(uegr().get_public_key(request.json))
@@ -120,7 +124,11 @@ def uegr_get_c3_():
 
 @app.route('/uegr/c4_/', methods=['POST'])
 def uegr_get_c4_():
-    return json.dumps(uegr().get_c4_(request.json))    
+    return json.dumps(uegr().get_c4_(request.json))
+
+@app.route('/uegr/dec/', methods=['POST'])
+def uegr_get_dec():
+    return json.dumps(uegr().get_decryption(request.json))    
 
 
 if __name__ == '__main__':
