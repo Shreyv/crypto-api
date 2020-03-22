@@ -3,6 +3,8 @@ import json
 from model.rsa import rsa
 from model.eg import eg
 from model.dh import dh
+from model.egr import egr
+from model.uegr import uegr
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -66,6 +68,59 @@ def getK1():
 def getK2():
     return json.dumps(dh(X=request.json["X"],y = request.json["y"]).getK2().__dict__)
 
+@app.route('/egr/public/', methods=['POST'])
+def egr_get_public_key():
+    return json.dumps(egr().get_public_key(request.json))
+
+
+@app.route('/egr/c1/', methods=['POST'])
+def egr_get_c1():
+    return json.dumps(egr().getc1(request.json))
+
+
+@app.route('/egr/c2/', methods=['POST'])
+def egr_get_c2():
+    return json.dumps(egr().getc2(request.json))
+
+@app.route('/egr/ree/', methods=['POST'])
+def egr_get_ree():
+    return json.dumps(egr().get_reencryption(request.json))
+
+@app.route('/uegr/public/', methods=['POST'])
+def uegr_get_public_key():
+    return json.dumps(uegr().get_public_key(request.json))
+
+@app.route('/uegr/c1/', methods=['POST'])
+def uegr_get_c1():
+    return json.dumps(uegr().get_c1(request.json))
+
+@app.route('/uegr/c2/', methods=['POST'])
+def uegr_get_c2():
+    return json.dumps(uegr().get_c2(request.json))
+
+@app.route('/uegr/c3/', methods=['POST'])
+def uegr_get_c3():
+    return json.dumps(uegr().get_c3(request.json))
+
+@app.route('/uegr/c4/', methods=['POST'])
+def uegr_get_c4():
+    return json.dumps(uegr().get_c4(request.json)) 
+
+@app.route('/uegr/c1_/', methods=['POST'])
+def uegr_get_c1_():
+    return json.dumps(uegr().get_c1_(request.json))
+
+@app.route('/uegr/c2_/', methods=['POST'])
+def uegr_get_c2_():
+    return json.dumps(uegr().get_c2_(request.json))
+
+@app.route('/uegr/c3_/', methods=['POST'])
+def uegr_get_c3_():
+    return json.dumps(uegr().get_c3_(request.json))
+
+@app.route('/uegr/c4_/', methods=['POST'])
+def uegr_get_c4_():
+    return json.dumps(uegr().get_c4_(request.json))    
 
 
 if __name__ == '__main__':
